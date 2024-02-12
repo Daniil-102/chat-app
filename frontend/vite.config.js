@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '': {
-        target: 'http://localhost:8000'
+        target: 'https://chat-app-yvbb.onrender.com'
       }
     }
   }
