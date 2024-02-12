@@ -18,11 +18,10 @@ export const useListenMessages = () => {
                 sound = new Audio(notification);
                 sound.play();
             }
-			// if (selectedConversation && newMessage.conversationId === selectedConversation._id) {
-            //     setMessages(prevMessages => [...prevMessages, newMessage]);
-            // }
+
 			setMessages([...messages, newMessage])
-			console.log(messages, newMessage)
+			console.log(newMessage)
+			console.log(selectedConversation)
 		});
 
 		return () => socket?.off("newMessage");
