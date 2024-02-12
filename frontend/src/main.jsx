@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext.jsx'
 import { SocketContextProvider } from './context/SocketContext.jsx'
 import { SoundContextProvider } from './context/SoundContext.jsx'
+import { UnreadMessagesProvider } from './context/UnreadMessageContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthContextProvider>
         <SocketContextProvider>
           <SoundContextProvider>
-            <App />
+            <UnreadMessagesProvider>
+              <App />
+            </UnreadMessagesProvider>
           </SoundContextProvider>
         </SocketContextProvider>
       </AuthContextProvider>

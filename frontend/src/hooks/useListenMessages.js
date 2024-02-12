@@ -3,10 +3,12 @@ import { useSocketContext } from '../context/SocketContext'
 import { useConversation } from '../zustand/useConversation';
 import notification from '../assets/sound/notification.mp3'
 import { useSoundContext } from '../context/SoundContext';
+import { useUnreadMessagesContext } from '../context/UnreadMessageContext';
 
 export const useListenMessages = () => {
 	const { socket } = useSocketContext();
 	const { messages, setMessages, selectedConversation  } = useConversation();
+	const { addUnreadConversation } = useUnreadMessagesContext()
     const { isSoundOn, toggleSound } = useSoundContext()
 
 	useEffect(() => {
@@ -20,9 +22,9 @@ export const useListenMessages = () => {
             }
 			 if (selectedConversation._id === newMessage.senderId) {
 				setMessages([...messages, newMessage])
+			} else {
+				addUnreadConversation(newMessage.senderId);
 			}
-			console.log(newMessage)
-			console.log(selectedConversation)
 		});
 
 		return () => socket?.off("newMessage");

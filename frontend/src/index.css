@@ -56,3 +56,13 @@ body {
 		transform: translate3d(4px, 0, 0);
 	}
 }
+
+.unread-messages {
+  height: 10px;
+  width: 10px;
+  background: rgb(58, 58, 158);
+  border-radius: 50%;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+}
