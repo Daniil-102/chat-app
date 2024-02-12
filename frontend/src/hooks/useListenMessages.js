@@ -24,7 +24,7 @@ export const useListenMessages = () => {
 		});
 
 		return () => socket?.off("newMessage");
-	}, [socket, setMessages, messages, isSoundOn]);
+	}, [socket, setMessages, messages, selectedConversation, isSoundOn]);
 
 
     return { isSoundOn, toggleSound };
