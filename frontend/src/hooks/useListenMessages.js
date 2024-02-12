@@ -6,7 +6,7 @@ import { useSoundContext } from '../context/SoundContext';
 
 export const useListenMessages = () => {
     const { socket } = useSocketContext();
-    const { messages, setMessages } = useConversation();
+    const { setMessages } = useConversation();
     const { isSoundOn, toggleSound } = useSoundContext();
 
     useEffect(() => {
@@ -31,7 +31,8 @@ export const useListenMessages = () => {
         return () => {
             socket.off("newMessage", handleNewMessage);
         };
-    }, [socket, setMessages, messages, isSoundOn]);
+    }, [socket, setMessages, isSoundOn]);
 
     return { isSoundOn, toggleSound };
 };
+
