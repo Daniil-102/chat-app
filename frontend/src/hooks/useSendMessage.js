@@ -21,6 +21,8 @@ export const useSendMessage = () => {
         if (data.error) throw new Error(data.error)
 
         setMessages([...messages, data])
+
+        socket.emit("newMessage", {message: data, conversationId: selectedConversation._id});
     } catch (err) {
         toast.error(err.message)
     } finally {
