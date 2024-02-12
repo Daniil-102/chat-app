@@ -6,7 +6,7 @@ import { useSoundContext } from '../context/SoundContext';
 
 export const useListenMessages = () => {
 	const { socket } = useSocketContext();
-	const { messages, setMessages } = useConversation();
+	const { messages, setMessages, selectedConversation  } = useConversation();
     const { isSoundOn, toggleSound } = useSoundContext()
 
 	useEffect(() => {
@@ -18,7 +18,9 @@ export const useListenMessages = () => {
                 sound = new Audio(notification);
                 sound.play();
             }
-			setMessages([...messages, newMessage]);
+			if (selectedConversation && newMessage.conversationId === selectedConversation._id) {
+                setMessages([...messages, newMessage]);
+            }
 		});
 
 		return () => socket?.off("newMessage");

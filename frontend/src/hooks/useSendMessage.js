@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { useConversation } from '../zustand/useConversation'
 import toast from "react-hot-toast";
-import { useSocketContext } from '../context/SocketContext';
 
 
 export const useSendMessage = () => {
   const [loading, setLoading] = useState()
   const {messages, setMessages, selectedConversation} = useConversation()
-  const { socket } = useSocketContext();
 
   const sendMessage = async (message) => {
     setLoading(true)
@@ -23,8 +21,6 @@ export const useSendMessage = () => {
         if (data.error) throw new Error(data.error)
 
         setMessages([...messages, data])
-
-        socket.emit("newMessage", {message: data, conversationId: selectedConversation._id});
     } catch (err) {
         toast.error(err.message)
     } finally {
