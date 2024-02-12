@@ -20,7 +20,7 @@ export const useListenMessages = () => {
                 sound = new Audio(notification);
                 sound.play();
             }
-			 if (selectedConversation._id === newMessage.senderId) {
+			 if (selectedConversation?._id === newMessage.senderId) {
 				setMessages([...messages, newMessage])
 			} else {
 				addUnreadConversation(newMessage.senderId);
