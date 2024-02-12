@@ -18,8 +18,9 @@ export const useListenMessages = () => {
                 sound = new Audio(notification);
                 sound.play();
             }
-
-			setMessages([...messages, newMessage])
+			 if (selectedConversation._id === newMessage.senderId) {
+				setMessages([...messages, newMessage])
+			}
 			console.log(newMessage)
 			console.log(selectedConversation)
 		});
